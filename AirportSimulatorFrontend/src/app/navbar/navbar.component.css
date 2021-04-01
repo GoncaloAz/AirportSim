@@ -1,0 +1,20 @@
+.logo {
+  color: white;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.logo-left {
+  background-color: teal;
+  padding: 3px 8px 3px 3px;
+  border-radius: 4px;
+}
+
+.logo-right {
+  padding: 3px 8px 3px 3px;
+  margin-left: -5px;
+  border-radius: 4px;
+}
+.nav-link {
+  color: teal;
+}

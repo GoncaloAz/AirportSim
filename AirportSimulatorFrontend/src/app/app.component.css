@@ -1,0 +1,19 @@
+#dashboard {
+  margin-top: 200px;
+}
+
+.navbar {
+  background-color: black !important;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.mr-auto {
+  margin-right: auto !important;
+}
+
+h1 {
+  color: black;
+}
+h2 {
+  color: black;
+}
