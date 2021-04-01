@@ -1,1 +1,24 @@
 <p>plane-requests-history works!</p>
+<div class="section-container">
+  <h2>
+    Flight History
+  </h2>
+  <table class="table table-inverse table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Flight Number</th>
+        <th>Request type</th>
+        <th>Time of request</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of requests">
+        <td>{{request.id}}</td>
+        <td>{{request.flightNumber}}</td>
+        <td>{{request.requestType}}</td>
+        <td>{{request.timeOfRequest | date :"medium"}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
