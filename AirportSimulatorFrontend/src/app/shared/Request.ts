@@ -1,8 +1,10 @@
 export interface Request{
 
     id: number;
-    flightNumber: string;
+    flightCode: string;
     requestType:string;
-    timeOfRequest:Date;
+    timeForRequest:Date;
+    timeOfRequestCreation:Date;
+    aproved:boolean;
 
 }

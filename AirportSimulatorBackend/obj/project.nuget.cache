@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "PID5xnAoQC+7o2IF7t9zm+MKVyx2Ja+eFMoF1DWGoXuWleiXZx8PTv/wUU5urEblh8A6UnXgcyuS1J981iyDQQ==",
+  "success": true,
+  "projectFilePath": "E:\\Programming\\Repositories\\VestasAirport\\AirportSimulatorBackend\\AirportSimulatorBackend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\gonca\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\gonca\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\gonca\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\gonca\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\gonca\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\gonca\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}

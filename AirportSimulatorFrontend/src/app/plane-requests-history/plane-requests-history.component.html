@@ -7,17 +7,21 @@
     <thead class="thead-dark">
       <tr>
         <th>ID</th>
-        <th>Flight Number</th>
+        <th>Flight Code</th>
         <th>Request type</th>
-        <th>Time of request</th>
+        <th>Time for request</th>
+        <th>Creation time of request</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let request of requests">
         <td>{{request.id}}</td>
-        <td>{{request.flightNumber}}</td>
+        <td>{{request.flightCode}}</td>
         <td>{{request.requestType}}</td>
-        <td>{{request.timeOfRequest | date :"medium"}}</td>
+        <td>{{request.timeForRequest | date :"medium"}}</td>
+        <td>{{request.timeOfRequestCreation | date :"medium"}}</td>
+        <td>{{request.aproved}}</td>
       </tr>
     </tbody>
   </table>
