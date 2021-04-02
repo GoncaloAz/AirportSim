@@ -8,6 +8,7 @@ namespace AirportSimulatorBackend.Models
 
         public DbSet<Flight> Flights { get; set; }
         public DbSet<Request> Requests { get; set; }
-        
+        public DbSet<Runway> Runways { get; set; }
+
     }
 }

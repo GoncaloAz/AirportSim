@@ -13,6 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using AirportSimulatorBackend.Repository;
+using AirportSimulatorBackend.Services;
 
 namespace AirportSimulatorBackend
 {
@@ -29,6 +31,7 @@ namespace AirportSimulatorBackend
         public void ConfigureServices(IServiceCollection services)
         {
 
+            //Connection string for exercise purpose
             const string postgresConnectionString = @"
                 Host=ec2-54-228-174-49.eu-west-1.compute.amazonaws.com;
                 Port=5432;
@@ -47,6 +50,10 @@ namespace AirportSimulatorBackend
             });
 
             services.AddDbContext<ApiContext>(opt => opt.UseNpgsql(postgresConnectionString));
+
+            services.AddHttpClient();
+            services.AddScoped<IRequestRepository, RequestRepository>();
+            services.AddScoped<IRequestService, RequestService>();
 
         }
 
