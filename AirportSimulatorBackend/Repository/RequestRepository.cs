@@ -30,7 +30,7 @@ namespace AirportSimulatorBackend.Repository
 
         public IEnumerable<Request> GetAllRequests()
         {
-            return _context.Requests.Include("Flight").ToList();
+            return _context.Requests.Include("Flight").OrderBy(p => p.Created);
         }
 
     }

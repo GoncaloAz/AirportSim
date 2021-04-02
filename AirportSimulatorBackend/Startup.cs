@@ -31,13 +31,18 @@ namespace AirportSimulatorBackend
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy", c => c.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
+
             //Connection string for exercise purpose
             const string postgresConnectionString = @"
-                Host=ec2-54-228-174-49.eu-west-1.compute.amazonaws.com;
+                Host=tai.db.elephantsql.com;
                 Port=5432;
-                Username=qwtwijwahxwwyj;
-                Password=4d39425c61fd8f1f7a2e4fb8e394376a55895c19bad973b13fded8c8a8afe2b4;
-                Database=dcad8acsr9sh15;
+                Username=yslhojbi;
+                Password=qoaYmQi40_m7FKSC5rJLRg_Fzan10ZJ7;
+                Database=yslhojbi;
                 Pooling=true;
                 SSL Mode=Require;
                 TrustServerCertificate=True;
@@ -63,6 +68,7 @@ namespace AirportSimulatorBackend
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AirportSimulatorBackend v1"));
             }
