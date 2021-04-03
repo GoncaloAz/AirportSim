@@ -33,7 +33,7 @@ namespace AirportSimulatorBackend
 
             services.AddCors(opt =>
             {
-                opt.AddPolicy("CorsPolicy", c => c.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+                opt.AddPolicy("MyPolicy", c => c.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
 
             //Connection string for exercise purpose
@@ -65,17 +65,22 @@ namespace AirportSimulatorBackend
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseCors();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AirportSimulatorBackend v1"));
             }
 
+
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 

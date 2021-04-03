@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Request } from '../shared/Request'
+import { RequestService } from '../services/request.service';
 
 @Component({
   selector: 'app-plane-requests-history',
@@ -8,18 +9,42 @@ import { Request } from '../shared/Request'
 })
 export class PlaneRequestsHistoryComponent implements OnInit {
 
-  constructor() { }
+  requests: Request[];
+  total=0;
+  page=1;
+  limit=10;
+  loading = false;
+  constructor(private _requestData: RequestService) { }
 
-  requests: Request[] = [
-
-    {id: 1, flightCode : "F505", requestType: "Land",timeForRequest: new Date(2021,4,1,17,5,0), timeOfRequestCreation: new Date(2021,4,1,17,5,0),aproved:true},
-    {id: 2, flightCode : "F504", requestType: "Departure",timeForRequest: new  Date(2021,4,1,17,10,55), timeOfRequestCreation: new Date(2021,4,1,17,10,55),aproved:true},
-    {id: 3, flightCode : "H505", requestType: " Shcedule Landing",timeForRequest: new Date(2021,4,1,17,10,0), timeOfRequestCreation: new Date(2021,4,1,16,55,0),aproved:false},
-    {id: 4, flightCode : "TP505", requestType: "Schedule Departure",timeForRequest: new Date(2021,4,1,18,30,0), timeOfRequestCreation: new Date(2021,4,1,17,15,0),aproved:true},
-
-  ]
+  
 
   ngOnInit(): void {
+    this.getAllRequests();
+  }
+
+  getAllRequests(): void {
+    this._requestData.getRequests(this.page, this.limit)
+      .subscribe((res : any) => {
+        console.log('Result from getRequests: ', res);
+        this.requests = res['page']['data'];
+        console.log(this.requests);
+        this.total =res['page'].total;
+        this.loading = false;
+
+    })
+  }
+
+  goToPrevious():void{
+    this.page--;
+    this.getAllRequests();
+  }
+  goToNext():void{
+    this.page++;
+    this.getAllRequests();
+  }
+  goToPage(n: number): void {
+    this.page = n;
+    this.getAllRequests();
   }
 
 }

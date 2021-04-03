@@ -7,11 +7,13 @@ using Microsoft.Extensions.Logging;
 using AirportSimulatorBackend.Models;
 using AirportSimulatorBackend.Services;
 using AirportSimulatorBackend.Utils;
+using Microsoft.AspNetCore.Cors;
 
 namespace AirportSimulatorBackend.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [EnableCors("MyPolicy")]
     public class RequestController : ControllerBase
     {
         private readonly IRequestService _requestService;

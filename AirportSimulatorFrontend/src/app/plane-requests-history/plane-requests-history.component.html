@@ -17,12 +17,16 @@
     <tbody>
       <tr *ngFor="let request of requests">
         <td>{{request.id}}</td>
-        <td>{{request.flightCode}}</td>
-        <td>{{request.requestType}}</td>
-        <td>{{request.timeForRequest | date :"medium"}}</td>
-        <td>{{request.timeOfRequestCreation | date :"medium"}}</td>
+        <td>{{request.flight.flightCode}}</td>
+        <td>{{request.type}}</td>
+        <td>{{request.time | date :"medium"}}</td>
+        <td>{{request.created | date :"medium"}}</td>
         <td>{{request.aproved}}</td>
       </tr>
     </tbody>
   </table>
+
+  <app-pagination (goPage)="goToPage($event)" (goPrev)="goToPrevious()" (goNext)="goToNext()" [page]="page"
+    [perPage]="limit" [count]="total">
+  </app-pagination>
 </div>

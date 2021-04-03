@@ -1,10 +1,13 @@
+import { Flight } from './flight'
+
 export interface Request{
 
     id: number;
-    flightCode: string;
-    requestType:string;
-    timeForRequest:Date;
-    timeOfRequestCreation:Date;
+    flight: Flight;
+    total: number;
+    type:string;
+    time:Date;
+    created:Date;
     aproved:boolean;
 
 }
