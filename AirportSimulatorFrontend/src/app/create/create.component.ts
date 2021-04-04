@@ -24,6 +24,7 @@ export class CreateComponent implements OnInit {
   date:string;
   meridian:boolean = true;
   CurrentDate = new Date();
+  RequestTimeDate = new Date();
   request = new Request();
   flight = new Flight();
 
@@ -44,15 +45,28 @@ export class CreateComponent implements OnInit {
     var type =(<HTMLOptionElement>opt).text;
     this.request.type = type;
 
+    
     //Date for when the request is for
-    this.request.time = new Date(this.CurrentDate.getFullYear(),this.CurrentDate.getMonth(),this.CurrentDate.getDay(),this.time.hour,this.time.minute,this.time.second);
+    //this.request.time = new Date(this.CurrentDate.getFullYear(),this.CurrentDate.getMonth(),this.CurrentDate.getDay(),this.time.hour,this.time.minute,this.time.second);
+
+    this.RequestTimeDate.setFullYear(this.CurrentDate.getFullYear());
+    this.RequestTimeDate.setMonth(this.CurrentDate.getMonth());
+    this.RequestTimeDate.setDate(this.CurrentDate.getDate());
+    this.RequestTimeDate.setHours(this.time.hour);
+    this.RequestTimeDate.setMinutes(this.time.minute);
+    this.RequestTimeDate.setSeconds(this.time.second);
+    //console.log(this.CurrentDate);
+    //console.log(this.RequestTimeDate);
 
     //Default false since it was not aproved yet
     this.request.aproved=false;
 
-    //Date and time when request was created
+    //Date and time when request was created and for  what time request is
     this.request.created = this.CurrentDate;
+    this.request.time = this.RequestTimeDate;
 
+    //console.log(this.request.created);
+    //console.log(this.request.time);
     this._requestService.addRequest(this.request).subscribe(data => {console.log(data)});
   }
 

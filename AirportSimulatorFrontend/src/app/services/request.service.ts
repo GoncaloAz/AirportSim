@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Request } from '../shared/Request';
+import { DateFormatter } from '../utils/dateFormatter';
+import { Observable } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,15 +21,17 @@ export class RequestService {
     return this._http.get('https://localhost:5001/Request/AllRequests/' + pageIndex + '/' + pageSize).pipe();
   }
 
-  addRequest(request: Request){
+  addRequest(request: Request):Observable<any>{
 
     //Formating Dates
-    var time = request.time.getFullYear().toString() +"-"+request.time.getMonth().toString()+"-"+request.time.getDay().toString()+"T"+
-               request.time.getHours().toString()+":"+request.time.getMinutes().toString()+":"+request.time.getSeconds().toString();
+    console.log(request.time);
+    console.log(request.time.getMonth());
+    var time = DateFormatter(request.time);
 
-    var created = request.created.getFullYear().toString() +"-"+request.created.getMonth().toString()+"-"+request.created.getDay().toString()+"T"+
-                  request.created.getHours().toString()+":"+request.created.getMinutes().toString()+":"+request.created.getSeconds().toString();
+    var created = DateFormatter(request.created);
 
+    console.log(time);
+    console.log(created)
     
     const body= JSON.stringify(request);
     const bodyParsed = JSON.parse(body);
@@ -48,7 +52,18 @@ export class RequestService {
     const bodyToSend = JSON.stringify(bodyParsed);
     console.log(bodyToSend);
     
-    return this._http.post('https://localhost:5001/Request/CreateRequest', bodyToSend,httpOptions);
+    return this._http.post('https://localhost:5001/Request/CreateRequest', 
+    {
+      "flight":{
+              "flightCode":request.flight.flightCode,
+              "status": bodyParsed.flight.status
+              },
+      "type": request.type,
+      "time": time,
+      "aproved": false,
+      "created":created
+    },
+    httpOptions);
   }
 
 }
