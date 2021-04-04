@@ -1,0 +1,32 @@
+<h1>Create flight request</h1>
+
+<div>
+
+
+  <div class="form-group">
+    <div>
+      <label>Flight Code: </label>
+      <input id="flightCode" [(ngModel)]="flight.flightCode" placeholder="FlightCode" />
+    </div>
+
+    <select class="form-control" id="tipoRequestSelector">
+      <option value="" disabled selected>Select Request Type</option>
+      <option *ngFor="let element of types">
+        <p> {{element.type}}</p>
+      </option>
+    </select>
+
+    <div ng-controller="myCtrl">
+      <p>{{ CurrentDate | date:'dd/MM/yyyy'}}</p>
+    </div>
+    <div class="timepicker">
+      <ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+      <hr>
+      <pre>Selected time: {{time | json}}</pre>
+    </div>
+  </div>
+
+  <div>
+    <button (click)="addRequest()">Create</button>
+  </div>
+</div>

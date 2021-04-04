@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Insight Airport ATC Dashboard';
-  subtitle = 'kappa';
+  subtitle = 'Insight';
 }

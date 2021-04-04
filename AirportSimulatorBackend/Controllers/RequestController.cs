@@ -42,6 +42,14 @@ namespace AirportSimulatorBackend.Controllers
 
             return Ok(response);
         }
+
+        [Route("CreateRequest")]
+        [HttpPost]
+        public IActionResult CreateRequest(Request request)
+        {
+            _requestService.CreateRequest(request);
+            return Ok();
+        }
     }
 }
 

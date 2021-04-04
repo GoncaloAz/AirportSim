@@ -14,18 +14,11 @@ namespace AirportSimulatorBackend.Repository
         {
             _context = context;
         }
-        public int AddRequest(Request requestEntity)
+
+        public void CreateRequest(Request request)
         {
-            int result = 0;
-
-            if (requestEntity != null)
-            {
-                _context.Requests.Add(requestEntity);
-                _context.SaveChanges();
-                result = requestEntity.Id;
-            }
-            return result;
-
+            _context.Requests.Add(request);
+            _context.SaveChanges();
         }
 
         public IEnumerable<Request> GetAllRequests()
@@ -33,5 +26,9 @@ namespace AirportSimulatorBackend.Repository
             return _context.Requests.Include("Flight").OrderBy(p => p.Created);
         }
 
+        public Request GetById(string fCode)
+        {
+            return _context.Requests.FirstOrDefault(t => t.Flight.FlightCode == fCode);
+        }
     }
 }

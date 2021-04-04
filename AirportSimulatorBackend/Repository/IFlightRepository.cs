@@ -6,10 +6,8 @@ using System.Web;
 
 namespace AirportSimulatorBackend.Repository
 {
-    public interface IRequestRepository
+    public interface IFlightRepository
     {
-        IEnumerable<Request> GetAllRequests();
-        Request GetById(string id);
-        void CreateRequest(Request request);
+        void CreateFlight(Flight flight);
     }
 }

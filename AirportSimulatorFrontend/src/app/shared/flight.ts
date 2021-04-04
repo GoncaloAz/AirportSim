@@ -1,5 +1,13 @@
 export interface Flight{
-    id: number;
+    id?: number;
     flightCode: string;
-    status:String;
+    status:string;
+}
+
+export class Flight implements Flight{
+    
+    id?: number;
+    flightCode: string;
+    status:string;
+    
 }

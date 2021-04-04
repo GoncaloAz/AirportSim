@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Flight } from '../shared/flight'
+import { Flight } from '../shared/Flight'
 import { Request } from '../shared/Request'
 
 @Component({
