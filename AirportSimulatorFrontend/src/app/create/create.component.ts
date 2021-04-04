@@ -60,6 +60,7 @@ export class CreateComponent implements OnInit {
 
     //Default false since it was not aproved yet
     this.request.aproved=false;
+    this.request.active=true;
 
     //Date and time when request was created and for  what time request is
     this.request.created = this.CurrentDate;

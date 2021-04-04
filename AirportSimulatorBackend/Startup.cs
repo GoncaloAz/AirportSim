@@ -61,6 +61,8 @@ namespace AirportSimulatorBackend
             services.AddScoped<IRequestService, RequestService>();
             services.AddScoped<IFlightRepository, FlightRepository>();
             //services.AddScoped<IFlightService, FligthService>();
+            services.AddScoped<IRunwayService, RunwayService>();
+            services.AddScoped<IRunwayRepository, RunwayRepository>();
 
         }
 

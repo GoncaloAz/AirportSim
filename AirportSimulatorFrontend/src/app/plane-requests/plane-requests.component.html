@@ -1,19 +1,16 @@
 <p>plane-requests works!</p>
 
 <div class="section-container">
-  <!--
 
-    <h2>Current Requests</h2>
+  <h2>Current Requests</h2>
   <div class="card-deck flights">
     <div *ngFor="let request of requests">
       <div class="card mb-3 shadow block-status">
-        <div class="card-header">{{request.flight}}</div>
-        <div class="card-body">{{request.requestType}}, {{request.timeForRequest | date:"medium"}}</div>
+        <div class="card-header">Flight {{request.flight.flightCode}}</div>
+        <div class="card-body">{{request.type}}, for {{request.time | date:"medium"}}</div>
         <button>Aprove</button>
         <button>Deny</button>
       </div>
     </div>
   </div>
 </div>
-
-  -->

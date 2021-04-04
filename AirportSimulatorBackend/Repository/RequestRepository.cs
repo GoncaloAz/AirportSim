@@ -21,6 +21,11 @@ namespace AirportSimulatorBackend.Repository
             _context.SaveChanges();
         }
 
+        public IEnumerable<Request> GetAllActiveRequests()
+        {
+            return _context.Requests.Where(r => r.active == true).Include("Flight").ToList();
+        }
+
         public IEnumerable<Request> GetAllRequests()
         {
             return _context.Requests.Include("Flight").OrderBy(p => p.Created);

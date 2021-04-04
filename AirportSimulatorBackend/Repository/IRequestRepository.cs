@@ -9,6 +9,7 @@ namespace AirportSimulatorBackend.Repository
     public interface IRequestRepository
     {
         IEnumerable<Request> GetAllRequests();
+        IEnumerable<Request> GetAllActiveRequests();
         Request GetById(string id);
         void CreateRequest(Request request);
     }

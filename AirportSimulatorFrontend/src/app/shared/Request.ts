@@ -9,6 +9,7 @@ export interface Request{
     time:Date;
     created:Date;
     aproved:boolean;
+    active:boolean;
 
 }
 
@@ -21,5 +22,6 @@ export class Request implements Request{
     time:Date;
     created:Date;
     aproved:boolean;
+    active:boolean;
 
 }

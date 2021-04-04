@@ -6,19 +6,19 @@ using System.Linq;
 namespace AirportSimulatorBackend.Repository
 {
 
-    public class FlightRepository : IFlightRepository
+    public class RunwayRepository : IRunwayRepository
     {
 
         private readonly ApiContext _context;
 
-        public FlightRepository(ApiContext context)
+        public RunwayRepository(ApiContext context)
         {
             _context = context;
         }
-        public void CreateFlight(Flight flight)
+
+        public Runway getRunwayInfo()
         {
-            _context.Flights.Add(flight);
-            _context.SaveChanges();
+            return _context.Runways.FirstOrDefault();
         }
     }
 }

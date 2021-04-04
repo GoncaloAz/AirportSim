@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Flight } from '../shared/Flight'
 import { Request } from '../shared/Request'
+import { Runway } from '../shared/Runway'
+import { RequestService } from '../services/request.service';
+import { RunwayService } from '../services/runway.service';
 
 @Component({
   selector: 'app-plane-requests',
@@ -9,19 +12,36 @@ import { Request } from '../shared/Request'
 })
 export class PlaneRequestsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _requestData: RequestService, private _runwayData: RunwayService) { }
 
   requests: Request[] = [
   ]
 
   flights: Flight[] = [
-
-    {id:1, flightCode : "F555", status:"Shedule Landing"},
-    {id:2, flightCode : "F554", status:"Departure"}
-
   ];
 
-  ngOnInit(): void {
-  }
+  runway: Runway;
 
+  ngOnInit(): void {
+    this.getAllActiveRequests();
+    this.getRunwayData();
+  }
+  
+  getRunwayData():void {
+    this._runwayData.getRunwayInfo()
+      .subscribe((res: any) => { 
+        console.log("Result from runway: ", res); 
+        this.runway = res ;
+        console.log(this.runway)
+      })
+  }
+  getAllActiveRequests(): void {
+    this._requestData.getActiveRequests()
+      .subscribe((res : any) => {
+        console.log('Result from getRequests: ', res);
+        this.requests = res;
+        console.log(this.requests);
+    })
+
+  }
 }

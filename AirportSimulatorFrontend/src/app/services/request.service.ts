@@ -21,6 +21,10 @@ export class RequestService {
     return this._http.get('https://localhost:5001/Request/AllRequests/' + pageIndex + '/' + pageSize).pipe();
   }
 
+  getActiveRequests(){
+    return this._http.get("https://localhost:5001/Request/AllRequests/Active").pipe();
+  }
+
   addRequest(request: Request):Observable<any>{
 
     //Formating Dates
@@ -61,6 +65,7 @@ export class RequestService {
       "type": request.type,
       "time": time,
       "aproved": false,
+      "active": true,
       "created":created
     },
     httpOptions);

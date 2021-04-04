@@ -12,6 +12,7 @@
         <th>Time for request</th>
         <th>Creation time of request</th>
         <th>Status</th>
+        <th>Active</th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +23,7 @@
         <td>{{request.time | date :"medium"}}</td>
         <td>{{request.created | date :"medium"}}</td>
         <td>{{request.aproved}}</td>
+        <td>{{request.active}}</td>
       </tr>
     </tbody>
   </table>

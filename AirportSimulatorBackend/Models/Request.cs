@@ -9,6 +9,7 @@ namespace AirportSimulatorBackend.Models
         public string Type { get; set; }
         public DateTime Time { get; set; }
         public bool aproved { get; set; }
+        public bool active { get; set; }
         public DateTime Created { get; set; }
     }
 }

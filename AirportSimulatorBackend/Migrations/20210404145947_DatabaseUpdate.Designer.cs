@@ -3,15 +3,17 @@ using System;
 using AirportSimulatorBackend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AirportSimulatorBackend.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    partial class ApiContextModelSnapshot : ModelSnapshot
+    [Migration("20210404145947_DatabaseUpdate")]
+    partial class DatabaseUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,13 +78,15 @@ namespace AirportSimulatorBackend.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<bool>("Available")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("flightOnRunway")
+                    b.Property<string>("Status")
                         .HasColumnType("text");
 
+                    b.Property<int?>("flightOnRunwayId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("flightOnRunwayId");
 
                     b.ToTable("Runways");
                 });
@@ -94,6 +98,15 @@ namespace AirportSimulatorBackend.Migrations
                         .HasForeignKey("FlightId");
 
                     b.Navigation("Flight");
+                });
+
+            modelBuilder.Entity("AirportSimulatorBackend.Models.Runway", b =>
+                {
+                    b.HasOne("AirportSimulatorBackend.Models.Flight", "flightOnRunway")
+                        .WithMany()
+                        .HasForeignKey("flightOnRunwayId");
+
+                    b.Navigation("flightOnRunway");
                 });
 #pragma warning restore 612, 618
         }

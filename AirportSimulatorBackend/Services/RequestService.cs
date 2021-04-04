@@ -29,6 +29,11 @@ namespace AirportSimulatorBackend.Services
             //_requestRepo.CreateRequest(request);
         }
 
+        public IEnumerable<Request> GeAllActiveRequests()
+        {
+            return _requestRepo.GetAllActiveRequests();
+        }
+
         public IEnumerable<Request> GetAllRequests()
         {
             return _requestRepo.GetAllRequests();

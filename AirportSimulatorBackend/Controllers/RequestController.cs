@@ -43,6 +43,15 @@ namespace AirportSimulatorBackend.Controllers
             return Ok(response);
         }
 
+        [Route("AllRequests/Active")]
+        [HttpGet]
+        public IActionResult GetAllActiveRequests()
+        {
+            var data = _requestService.GeAllActiveRequests();
+
+            return Ok(data);
+        }
+
         [Route("CreateRequest")]
         [HttpPost]
         public IActionResult CreateRequest(Request request)

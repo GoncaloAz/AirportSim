@@ -6,6 +6,7 @@ namespace AirportSimulatorBackend.Services
     public interface IRequestService
     {
         IEnumerable<Request> GetAllRequests();
+        IEnumerable<Request> GeAllActiveRequests();
         void CreateRequest(Request request);
 
         Request GetRequestById(string id);
