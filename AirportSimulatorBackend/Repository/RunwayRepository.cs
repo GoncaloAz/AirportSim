@@ -20,5 +20,13 @@ namespace AirportSimulatorBackend.Repository
         {
             return _context.Runways.FirstOrDefault();
         }
+
+        public void LockRunway()
+        {
+            Runway runway = _context.Runways.FirstOrDefault();
+            runway.Available = false;
+            _context.SaveChanges();
+
+        }
     }
 }

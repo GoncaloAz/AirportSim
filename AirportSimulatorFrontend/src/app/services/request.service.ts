@@ -71,4 +71,9 @@ export class RequestService {
     httpOptions);
   }
 
+  aproveRequest(request : Request){
+
+    
+  }
+
 }

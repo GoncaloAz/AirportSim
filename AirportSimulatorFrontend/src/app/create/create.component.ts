@@ -16,7 +16,7 @@ export class CreateComponent implements OnInit {
     {type: "Landing Request"},
     {type: "Departure Request"},
     {type: "Landing Schedule Request"},
-    {type: "Request Departure Request"},
+    {type: "Departure Schedule Request"},
   ]
 
   time: any;

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace AirportSimulatorBackend.Services
 {
-    public interface IRunwayService
+    public interface IFlightService
     {
-        Runway getRunwayInfo();
-        void UpdateRunwayInfo();
+        void UpdateFlightInfo();
+        IEnumerable<Flight> getAllFlights();
     }
 }

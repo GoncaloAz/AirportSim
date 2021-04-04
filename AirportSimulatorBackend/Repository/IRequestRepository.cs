@@ -10,7 +10,11 @@ namespace AirportSimulatorBackend.Repository
     {
         IEnumerable<Request> GetAllRequests();
         IEnumerable<Request> GetAllActiveRequests();
+
+        List<Request> GetRequestsBetweenTimes(DateTime time1, DateTime time2);
         Request GetById(string id);
         void CreateRequest(Request request);
+
+        void UpdateRequest(Request request);
     }
 }

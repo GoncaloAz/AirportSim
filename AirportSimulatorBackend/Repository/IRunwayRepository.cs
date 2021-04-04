@@ -9,5 +9,7 @@ namespace AirportSimulatorBackend.Repository
     public interface IRunwayRepository
     {
         Runway getRunwayInfo();
+
+        void LockRunway();
     }
 }

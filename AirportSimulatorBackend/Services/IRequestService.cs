@@ -10,5 +10,6 @@ namespace AirportSimulatorBackend.Services
         void CreateRequest(Request request);
 
         Request GetRequestById(string id);
+        int AproveRequest(Request request);
     }
 }

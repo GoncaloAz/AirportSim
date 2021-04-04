@@ -4,6 +4,7 @@ import { Request } from '../shared/Request'
 import { Runway } from '../shared/Runway'
 import { RequestService } from '../services/request.service';
 import { RunwayService } from '../services/runway.service';
+import { FlightService } from '../services/flight.service';
 
 @Component({
   selector: 'app-plane-requests',
@@ -12,7 +13,7 @@ import { RunwayService } from '../services/runway.service';
 })
 export class PlaneRequestsComponent implements OnInit {
 
-  constructor(private _requestData: RequestService, private _runwayData: RunwayService) { }
+  constructor(private _requestData: RequestService, private _runwayData: RunwayService, private _flightData: FlightService) { }
 
   requests: Request[] = [
   ]
@@ -21,10 +22,13 @@ export class PlaneRequestsComponent implements OnInit {
   ];
 
   runway: Runway;
+  runwayStatus: string;
 
   ngOnInit(): void {
     this.getAllActiveRequests();
     this.getRunwayData();
+    this.getAllFlights();
+    
   }
   
   getRunwayData():void {
@@ -33,6 +37,12 @@ export class PlaneRequestsComponent implements OnInit {
         console.log("Result from runway: ", res); 
         this.runway = res ;
         console.log(this.runway)
+
+        if(this.runway.available){
+          this.runwayStatus = "Runway Status: <div>Available</div>";
+        }else{
+          this.runwayStatus = "RunwayStatus: Unavailable"
+        }
       })
   }
   getAllActiveRequests(): void {
@@ -42,6 +52,17 @@ export class PlaneRequestsComponent implements OnInit {
         this.requests = res;
         console.log(this.requests);
     })
-
   }
+
+  getAllFlights(): void{
+    this._flightData.getAllFlights()
+      .subscribe((res : any) => {
+        console.log('Result from getAllFlights:', res);
+        this.flights = res;
+        console.log(this.flights);
+        this.flights.shift();
+      })
+  }
+
+  
 }

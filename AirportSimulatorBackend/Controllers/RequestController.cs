@@ -59,6 +59,21 @@ namespace AirportSimulatorBackend.Controllers
             _requestService.CreateRequest(request);
             return Ok();
         }
+
+        [Route("AproveRequest")]
+        [HttpPut]
+        public IActionResult AproveRequest(Request request)
+        {
+            int success = _requestService.AproveRequest(request);
+
+            if (success == 2)
+            {
+                var message = "Runway currently being used. Unable to accept landing or departure request";
+                return Ok(message);
+            }
+
+            return Ok("Request Successfully aproved");
+        }
     }
 }
 

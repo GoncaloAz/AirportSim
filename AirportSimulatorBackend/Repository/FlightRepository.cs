@@ -20,5 +20,27 @@ namespace AirportSimulatorBackend.Repository
             _context.Flights.Add(flight);
             _context.SaveChanges();
         }
+
+        public IEnumerable<Flight> GetAllFlights()
+        {
+            return _context.Flights.OrderBy(f => f.Id).ToList();
+        }
+
+        public Flight getATCFlightEntity()
+        {
+            return _context.Flights.First();
+        }
+
+        public Flight getFlightByFlightCode(string flightCode)
+        {
+            return _context.Flights.Where(flight => flight.FlightCode == flightCode).First<Flight>();
+        }
+
+        public void UpdateFlightInfo(Flight flight)
+        {
+            _context.Flights.Attach(flight);
+            _context.Entry(flight).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
     }
 }
