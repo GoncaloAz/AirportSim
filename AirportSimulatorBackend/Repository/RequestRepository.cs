@@ -39,15 +39,18 @@ namespace AirportSimulatorBackend.Repository
 
         public List<Request> GetRequestsBetweenTimes(DateTime time1, DateTime time2)
         {
-            return _context.Requests.Where(r => r.Time > time1 && r.Time < time2).ToList();
+            return _context.Requests.Where(r => r.Time > time1 && r.Time < time2 && r.aproved == true).ToList();
         }
 
-        public void UpdateRequest(Request request)
+        public void UpdateRequest(int id)
         {
-
-            _context.Requests.Attach(request);
-            _context.Entry(request).State = EntityState.Modified;
+            var req = _context.Requests.FirstOrDefault(t => t.Id == id);
+            req.active = false;
+            req.aproved = true;
             _context.SaveChanges();
+            //_context.Requests.Attach(request);
+            //_context.Entry(request).State = EntityState.Modified;
+            //_context.SaveChanges();
 
         }
     }

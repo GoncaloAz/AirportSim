@@ -73,6 +73,7 @@ export class RequestService {
 
   aproveRequest(request : Request){
 
+    return this._http.put("https://localhost:5001/Request/AproveRequest",request,httpOptions);
     
   }
 

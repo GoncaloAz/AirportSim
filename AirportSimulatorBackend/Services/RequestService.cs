@@ -72,13 +72,12 @@ namespace AirportSimulatorBackend.Services
                     _flightRepo.UpdateFlightInfo(updatedFlight);
 
                     //This updates the previously created landing request and stops being active but becomes aproved
-                    request.active = false;
-                    request.aproved = true;
-                    _requestRepo.UpdateRequest(request);
+                    //request.active = false;
+                    //request.aproved = true;
+                    _requestRepo.UpdateRequest(request.Id);
 
                     //Creates a new request for the ATC for audit purposes
                     Flight atc = _flightRepo.getATCFlightEntity();
-                    atc.Id = 1;
                     Request newFlightRequest = new Request();
                     newFlightRequest.Flight = atc;
                     newFlightRequest.Type = "Landing Aproved for Flight" + request.Flight.FlightCode;
@@ -112,7 +111,7 @@ namespace AirportSimulatorBackend.Services
                     //This updates the previously created departure request and stops being active but becomes aproved
                     request.active = false;
                     request.aproved = true;
-                    _requestRepo.UpdateRequest(request);
+                    //_requestRepo.UpdateRequest(request);
 
                     //Creates a new request for the ATC for audit purposes
                     Flight atc = _flightRepo.getATCFlightEntity();
@@ -145,9 +144,9 @@ namespace AirportSimulatorBackend.Services
                         _flightRepo.UpdateFlightInfo(updatedFlight);
 
                         //This updates the previously created landing schedule request and stops being active but becomes aproved
-                        request.active = false;
-                        request.aproved = true;
-                        _requestRepo.UpdateRequest(request);
+                        //request.active = false;
+                        //request.aproved = true;
+                        _requestRepo.UpdateRequest(request.Id);
 
                         //Creates a new request for the ATC for audit purposes
                         Flight atc = _flightRepo.getATCFlightEntity();
@@ -159,6 +158,7 @@ namespace AirportSimulatorBackend.Services
                         newFlightRequest.Created = new DateTime();
                         newFlightRequest.active = false;
                         _requestRepo.CreateRequest(newFlightRequest);
+                        return 3;
                     }
 
                 }
@@ -177,7 +177,7 @@ namespace AirportSimulatorBackend.Services
                         //This updates the previously created departure schedule request and stops being active but becomes aproved
                         request.active = false;
                         request.aproved = true;
-                        _requestRepo.UpdateRequest(request);
+                        // _requestRepo.UpdateRequest(request);
 
                         //Creates a new request for the ATC for audit purposes
                         Flight atc = _flightRepo.getATCFlightEntity();
@@ -189,6 +189,7 @@ namespace AirportSimulatorBackend.Services
                         newFlightRequest.Created = new DateTime();
                         newFlightRequest.active = false;
                         _requestRepo.CreateRequest(newFlightRequest);
+                        return 3;
                     }
 
                 }

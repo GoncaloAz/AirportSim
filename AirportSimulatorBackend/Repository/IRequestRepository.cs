@@ -15,6 +15,6 @@ namespace AirportSimulatorBackend.Repository
         Request GetById(string id);
         void CreateRequest(Request request);
 
-        void UpdateRequest(Request request);
+        void UpdateRequest(int id);
     }
 }

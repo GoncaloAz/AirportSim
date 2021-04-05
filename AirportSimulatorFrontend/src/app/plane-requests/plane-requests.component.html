@@ -14,7 +14,7 @@
             </div>
             <div>at {{request.time | date:"medium"}}</div>
             <div class="card-footer">
-              <button class="btn btn-outline-success">Aprove</button>
+              <button (click)="aproveRequest(request)" class="btn btn-outline-success">Aprove</button>
               <button class="btn btn-outline-danger">Deny</button>
             </div>
           </div>

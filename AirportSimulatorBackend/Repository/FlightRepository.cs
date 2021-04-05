@@ -28,7 +28,7 @@ namespace AirportSimulatorBackend.Repository
 
         public Flight getATCFlightEntity()
         {
-            return _context.Flights.First();
+            return _context.Flights.Where(f => f.Id == 1).First();
         }
 
         public Flight getFlightByFlightCode(string flightCode)

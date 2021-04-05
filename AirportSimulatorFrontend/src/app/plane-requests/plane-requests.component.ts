@@ -23,6 +23,7 @@ export class PlaneRequestsComponent implements OnInit {
 
   runway: Runway;
   runwayStatus: string;
+  aproveMessage:any;
 
   ngOnInit(): void {
     this.getAllActiveRequests();
@@ -62,6 +63,14 @@ export class PlaneRequestsComponent implements OnInit {
         console.log(this.flights);
         this.flights.shift();
       })
+  }
+
+  aproveRequest(request: Request){
+    console.log(request);
+    this._requestData.aproveRequest(request).subscribe((res : any) => {
+      console.log('Result from aproveFlight: ', res);
+      this.aproveMessage = res;
+    })
   }
 
   

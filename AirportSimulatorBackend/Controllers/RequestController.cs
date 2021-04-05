@@ -24,6 +24,7 @@ namespace AirportSimulatorBackend.Controllers
         }
 
         //GET Requests/AllRequests/pageNumber/pageSize
+        // Returns all Requests and formats pagination
         [Route("AllRequests/{pageIndex:int}/{pageSize:int}")]
         [HttpGet]
         public IActionResult GetAllRequests(int pageindex, int pageSize)
@@ -43,6 +44,8 @@ namespace AirportSimulatorBackend.Controllers
             return Ok(response);
         }
 
+        //GET Requests/AllRequests/Active
+        // Returns all requests that are marked as active
         [Route("AllRequests/Active")]
         [HttpGet]
         public IActionResult GetAllActiveRequests()
@@ -52,6 +55,8 @@ namespace AirportSimulatorBackend.Controllers
             return Ok(data);
         }
 
+        //POST Requests/CreateRequest
+        //Creates a new request in the database
         [Route("CreateRequest")]
         [HttpPost]
         public IActionResult CreateRequest(Request request)
@@ -60,19 +65,39 @@ namespace AirportSimulatorBackend.Controllers
             return Ok();
         }
 
+        //PUT Requests/AproveRequest
+        //Aproves a request previously created
         [Route("AproveRequest")]
         [HttpPut]
         public IActionResult AproveRequest(Request request)
         {
-            int success = _requestService.AproveRequest(request);
+            int responseCode = _requestService.AproveRequest(request);
 
-            if (success == 2)
+            if (responseCode == 2)
             {
-                var message = "Runway currently being used. Unable to accept landing or departure request";
-                return Ok(message);
+                var responseRunway = new
+                {
+                    message = "Runway currently being used. Unable to accept landing or departure request",
+                    code = responseCode,
+                };
+                return Ok(responseRunway);
+            }
+            if (responseCode == 3)
+            {
+                var responseSchedule = new
+                {
+                    message = "There is a flight already scheduled to occupy the runway at that time",
+                    code = responseCode,
+                };
+                return Ok(responseSchedule);
             }
 
-            return Ok("Request Successfully aproved");
+            var responseSuccess = new
+            {
+                message = "Request Successfully aproved",
+                code = responseCode,
+            };
+            return Ok(responseSuccess);
         }
     }
 }
