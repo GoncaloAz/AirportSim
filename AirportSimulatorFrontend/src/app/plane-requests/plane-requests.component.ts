@@ -21,11 +21,19 @@ export class PlaneRequestsComponent implements OnInit {
   flights: Flight[] = [
   ];
 
+  alertSuccess: boolean = false;
+  alertError: boolean = false;
+  alertDenySuccess: boolean = false;
+  alertSuccessDeny: boolean = false;
   runway: Runway;
   runwayStatus: string;
   aproveMessage:any;
+  denyMessage: any;
+
 
   ngOnInit(): void {
+    this.alertSuccess = false;
+    this.alertError = false;
     this.getAllActiveRequests();
     this.getRunwayData();
     this.getAllFlights();
@@ -70,8 +78,28 @@ export class PlaneRequestsComponent implements OnInit {
     this._requestData.aproveRequest(request).subscribe((res : any) => {
       console.log('Result from aproveFlight: ', res);
       this.aproveMessage = res;
+
+      if(res.code == 1){
+        this.alertSuccess = true;
+      }else{
+        this.alertError = true;
+      }
+
+      //window.location.reload();
     })
   }
 
-  
+  denyRequest(request : Request){
+    console.log(request);
+    this._requestData.denyRequest(request).subscribe((res : any) => {
+      console.log('Request from denyFllight', res);
+      this.denyMessage = res;
+      this.alertDenySuccess= true;
+    })
+  }
+
+  closeAlert(){
+    this.alertSuccess=false;
+    this.alertError=false;
+  }
 }

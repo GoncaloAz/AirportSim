@@ -74,7 +74,7 @@ namespace AirportSimulatorBackend.Services
                     //This updates the previously created landing request and stops being active but becomes aproved
                     //request.active = false;
                     //request.aproved = true;
-                    _requestRepo.UpdateRequest(request.Id);
+                    _requestRepo.UpdateRequestAproval(request.Id);
 
                     //Creates a new request for the ATC for audit purposes
                     Flight atc = _flightRepo.getATCFlightEntity();
@@ -83,7 +83,7 @@ namespace AirportSimulatorBackend.Services
                     newFlightRequest.Type = "Landing Aproved for Flight" + request.Flight.FlightCode;
                     newFlightRequest.Time = request.Time;
                     newFlightRequest.aproved = true;
-                    newFlightRequest.Created = new DateTime();
+                    newFlightRequest.Created = DateTime.Now;
                     newFlightRequest.active = false;
                     _requestRepo.CreateRequest(newFlightRequest);
 
@@ -111,7 +111,7 @@ namespace AirportSimulatorBackend.Services
                     //This updates the previously created departure request and stops being active but becomes aproved
                     request.active = false;
                     request.aproved = true;
-                    //_requestRepo.UpdateRequest(request);
+                    _requestRepo.UpdateRequestAproval(request.Id);
 
                     //Creates a new request for the ATC for audit purposes
                     Flight atc = _flightRepo.getATCFlightEntity();
@@ -120,11 +120,11 @@ namespace AirportSimulatorBackend.Services
                     newFlightRequest.Type = "Departure Aproved for Flight" + request.Flight.FlightCode;
                     newFlightRequest.Time = request.Time;
                     newFlightRequest.aproved = true;
-                    newFlightRequest.Created = new DateTime();
+                    newFlightRequest.Created = DateTime.Now;
                     newFlightRequest.active = false;
                     _requestRepo.CreateRequest(newFlightRequest);
 
-                    return 2;
+                    return 1;
                 }
 
             }
@@ -133,7 +133,7 @@ namespace AirportSimulatorBackend.Services
                 if (request.Type == "Landing Schedule Request")
                 {
 
-                    DateTime time1 = request.Time;
+                    DateTime time1 = request.Time.AddMinutes(-3);
                     DateTime time2 = request.Time.AddMinutes(3);
 
                     if (_requestRepo.GetRequestsBetweenTimes(time1, time2).Count == 0)
@@ -146,7 +146,7 @@ namespace AirportSimulatorBackend.Services
                         //This updates the previously created landing schedule request and stops being active but becomes aproved
                         //request.active = false;
                         //request.aproved = true;
-                        _requestRepo.UpdateRequest(request.Id);
+                        _requestRepo.UpdateRequestAproval(request.Id);
 
                         //Creates a new request for the ATC for audit purposes
                         Flight atc = _flightRepo.getATCFlightEntity();
@@ -155,16 +155,20 @@ namespace AirportSimulatorBackend.Services
                         newFlightRequest.Type = "Landing Schedule Aproved for Flight" + request.Flight.FlightCode;
                         newFlightRequest.Time = request.Time;
                         newFlightRequest.aproved = true;
-                        newFlightRequest.Created = new DateTime();
+                        newFlightRequest.Created = DateTime.Now;
                         newFlightRequest.active = false;
                         _requestRepo.CreateRequest(newFlightRequest);
+                        return 1;
+                    }
+                    else
+                    {
                         return 3;
                     }
 
                 }
                 else if (request.Type == "Departure Schedule Request")
                 {
-                    DateTime time1 = request.Time;
+                    DateTime time1 = request.Time.AddMinutes(-3);
                     DateTime time2 = request.Time.AddMinutes(3);
 
                     if (_requestRepo.GetRequestsBetweenTimes(time1, time2).Count == 0)
@@ -177,7 +181,7 @@ namespace AirportSimulatorBackend.Services
                         //This updates the previously created departure schedule request and stops being active but becomes aproved
                         request.active = false;
                         request.aproved = true;
-                        // _requestRepo.UpdateRequest(request);
+                        _requestRepo.UpdateRequestAproval(request.Id);
 
                         //Creates a new request for the ATC for audit purposes
                         Flight atc = _flightRepo.getATCFlightEntity();
@@ -186,9 +190,13 @@ namespace AirportSimulatorBackend.Services
                         newFlightRequest.Type = "Departure Schedule Aproved for Flight" + request.Flight.FlightCode;
                         newFlightRequest.Time = request.Time;
                         newFlightRequest.aproved = true;
-                        newFlightRequest.Created = new DateTime();
+                        newFlightRequest.Created = DateTime.Now;
                         newFlightRequest.active = false;
                         _requestRepo.CreateRequest(newFlightRequest);
+                        return 1;
+                    }
+                    else
+                    {
                         return 3;
                     }
 
@@ -196,6 +204,26 @@ namespace AirportSimulatorBackend.Services
 
             }
             return 10;
+        }
+
+        public void DenyRequest(Request request)
+        {
+
+            Flight updatedFlight = _flightRepo.getFlightByFlightCode(request.Flight.FlightCode);
+            updatedFlight.Status = "Request Denied";
+
+            _requestRepo.UpdateRequestDenial(request.Id);
+
+            Flight atc = _flightRepo.getATCFlightEntity();
+            Request newFlightRequest = new Request();
+            newFlightRequest.Flight = atc;
+            newFlightRequest.Type = "Request Denied for " + request.Flight.FlightCode;
+            newFlightRequest.Time = request.Time;
+            newFlightRequest.aproved = true;
+            newFlightRequest.Created = DateTime.Now;
+            newFlightRequest.active = false;
+            _requestRepo.CreateRequest(newFlightRequest);
+
         }
     }
 }

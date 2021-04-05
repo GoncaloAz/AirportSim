@@ -77,4 +77,10 @@ export class RequestService {
     
   }
 
+  denyRequest(request : Request){
+
+    return this._http.put("https://localhost:5001/Request/DenyRequest",request,httpOptions);
+    
+  }
+
 }

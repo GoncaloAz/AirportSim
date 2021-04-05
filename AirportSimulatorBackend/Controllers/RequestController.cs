@@ -99,6 +99,23 @@ namespace AirportSimulatorBackend.Controllers
             };
             return Ok(responseSuccess);
         }
+
+        //PUT Requests/DenyRequest
+        //Denies a request previously created
+        [Route("DenyRequest")]
+        [HttpPut]
+        public IActionResult DenyRequest(Request request)
+        {
+
+            _requestService.DenyRequest(request);
+
+            var response = new
+            {
+                message = "Flight Request Denied"
+            };
+
+            return Ok(response);
+        }
     }
 }
 

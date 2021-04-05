@@ -25,3 +25,7 @@ a:hover {
 .section-container {
   padding: 30px;
 }
+
+.custom-tp fieldset .ngb-tp{
+  justify-content: center;
+}

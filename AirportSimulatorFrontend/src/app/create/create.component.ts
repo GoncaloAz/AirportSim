@@ -28,9 +28,12 @@ export class CreateComponent implements OnInit {
   request = new Request();
   flight = new Flight();
 
+  alert : boolean;
+
   constructor(private _requestService: RequestService) { }
 
   ngOnInit(): void {
+    this.alert = false
   }
 
   addRequest(){
@@ -69,6 +72,12 @@ export class CreateComponent implements OnInit {
     //console.log(this.request.created);
     //console.log(this.request.time);
     this._requestService.addRequest(this.request).subscribe(data => {console.log(data)});
+
+    this.alert=true;
+  }
+
+  closeAlert(){
+    this.alert=false;
   }
 
   toggleMeridian(){

@@ -42,15 +42,20 @@ namespace AirportSimulatorBackend.Repository
             return _context.Requests.Where(r => r.Time > time1 && r.Time < time2 && r.aproved == true).ToList();
         }
 
-        public void UpdateRequest(int id)
+        public void UpdateRequestAproval(int id)
         {
             var req = _context.Requests.FirstOrDefault(t => t.Id == id);
             req.active = false;
             req.aproved = true;
             _context.SaveChanges();
-            //_context.Requests.Attach(request);
-            //_context.Entry(request).State = EntityState.Modified;
-            //_context.SaveChanges();
+
+        }
+
+        public void UpdateRequestDenial(int id)
+        {
+            var req = _context.Requests.FirstOrDefault(t => t.Id == id);
+            req.active = false;
+            _context.SaveChanges();
 
         }
     }
