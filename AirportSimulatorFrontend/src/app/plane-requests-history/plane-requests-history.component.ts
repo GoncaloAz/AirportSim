@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Request } from '../shared/Request'
 import { RequestService } from '../services/request.service';
+import { RunwayService } from '../services/runway.service';
 
 @Component({
   selector: 'app-plane-requests-history',
@@ -14,12 +15,15 @@ export class PlaneRequestsHistoryComponent implements OnInit {
   page=1;
   limit=10;
   loading = false;
-  constructor(private _requestData: RequestService) { }
+  constructor(private _requestData: RequestService, private _runwayData: RunwayService) { }
 
   
 
   ngOnInit(): void {
     this.getAllRequests();
+    setInterval(() => {
+      this.clearRunway();
+    }, 15000)
   }
 
   getAllRequests(): void {
@@ -45,6 +49,10 @@ export class PlaneRequestsHistoryComponent implements OnInit {
   goToPage(n: number): void {
     this.page = n;
     this.getAllRequests();
+  }
+
+  clearRunway(){
+    this._runwayData.clearRunway().subscribe(res => {});
   }
 
 }

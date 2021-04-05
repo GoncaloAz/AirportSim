@@ -33,6 +33,14 @@ namespace AirportSimulatorBackend.Controllers
             return Ok(data);
         }
 
+        [Route("Clear")]
+        [HttpPut]
+        public IActionResult clearRunway()
+        {
+            _runwayService.UnlockRunway();
+            return Ok();
+        }
+
     }
 }
 

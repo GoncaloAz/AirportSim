@@ -37,6 +37,9 @@ export class PlaneRequestsComponent implements OnInit {
     this.getAllActiveRequests();
     this.getRunwayData();
     this.getAllFlights();
+    setInterval(() => {
+      this.refresh();
+    }, 15000)
     
   }
   
@@ -85,7 +88,11 @@ export class PlaneRequestsComponent implements OnInit {
         this.alertError = true;
       }
 
-      //window.location.reload();
+      setInterval(() => {
+        window.location.reload();
+      }, 2000)
+
+      
     })
   }
 
@@ -95,11 +102,21 @@ export class PlaneRequestsComponent implements OnInit {
       console.log('Request from denyFllight', res);
       this.denyMessage = res;
       this.alertDenySuccess= true;
+      
+      setInterval(() => {
+        window.location.reload();
+      }, 2000)
+      
     })
   }
 
   closeAlert(){
     this.alertSuccess=false;
     this.alertError=false;
+  }
+
+  refresh(){
+    this._runwayData.clearRunway().subscribe(res => {});
+    window.location.reload(); 
   }
 }

@@ -6,6 +6,6 @@ namespace AirportSimulatorBackend.Services
     public interface IRunwayService
     {
         Runway getRunwayInfo();
-        void UpdateRunwayInfo();
+        void UnlockRunway();
     }
 }

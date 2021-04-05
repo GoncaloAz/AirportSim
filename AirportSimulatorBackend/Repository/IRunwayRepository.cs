@@ -11,5 +11,7 @@ namespace AirportSimulatorBackend.Repository
         Runway getRunwayInfo();
 
         void LockRunway();
+
+        void UnlockRunway();
     }
 }

@@ -21,5 +21,9 @@ export class RunwayService {
     return this._http.get("https://localhost:5001/Runway/Info").pipe();
   }
 
+  clearRunway() {
+    return this._http.put("https://localhost:5001/Runway/Clear",httpOptions);
+  }
+
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RunwayService } from '../services/runway.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _runwayData: RunwayService) { }
 
   ngOnInit(): void {
+    setInterval(() => {
+      this.clearRunway();
+    }, 15000)
+  }
+
+  clearRunway(){
+    this._runwayData.clearRunway().subscribe(res => {});
   }
 
 }

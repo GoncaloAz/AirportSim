@@ -18,9 +18,10 @@ namespace AirportSimulatorBackend.Services
             return _runwayRepo.getRunwayInfo();
         }
 
-        public void UpdateRunwayInfo()
+        public void UnlockRunway()
         {
-            throw new NotImplementedException();
+            _runwayRepo.UnlockRunway();
         }
+
     }
 }
