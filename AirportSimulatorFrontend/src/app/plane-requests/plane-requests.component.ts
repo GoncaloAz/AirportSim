@@ -53,7 +53,7 @@ export class PlaneRequestsComponent implements OnInit {
         if(this.runway.available){
           this.runwayStatus = "Runway Status: <div>Available</div>";
         }else{
-          this.runwayStatus = "RunwayStatus: Unavailable"
+          this.runwayStatus = "RunwayStatus: Unavailable. Current Flight Occupying: " + this.runway.flightOnRunway
         }
       })
   }

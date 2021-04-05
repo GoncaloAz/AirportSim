@@ -64,7 +64,7 @@ namespace AirportSimulatorBackend.Services
                 else
                 {
                     //Runway becomes unavailable when plane is landing
-                    _runwayRepo.LockRunway();
+                    _runwayRepo.LockRunway(request.Flight.FlightCode);
 
                     //This updates the flight status to Landing
                     Flight updatedFlight = _flightRepo.getFlightByFlightCode(request.Flight.FlightCode);
@@ -80,7 +80,7 @@ namespace AirportSimulatorBackend.Services
                     Flight atc = _flightRepo.getATCFlightEntity();
                     Request newFlightRequest = new Request();
                     newFlightRequest.Flight = atc;
-                    newFlightRequest.Type = "Landing Aproved for Flight" + request.Flight.FlightCode;
+                    newFlightRequest.Type = "Landing Aproved for Flight " + request.Flight.FlightCode;
                     newFlightRequest.Time = request.Time;
                     newFlightRequest.aproved = true;
                     newFlightRequest.Created = DateTime.Now;
@@ -101,7 +101,7 @@ namespace AirportSimulatorBackend.Services
                 else
                 {
                     //Runway becomes unavailable when plane is landing
-                    _runwayRepo.LockRunway();
+                    _runwayRepo.LockRunway(request.Flight.FlightCode);
 
                     //This updates the flight status to Departing
                     Flight updatedFlight = _flightRepo.getFlightByFlightCode(request.Flight.FlightCode);
@@ -117,7 +117,7 @@ namespace AirportSimulatorBackend.Services
                     Flight atc = _flightRepo.getATCFlightEntity();
                     Request newFlightRequest = new Request();
                     newFlightRequest.Flight = atc;
-                    newFlightRequest.Type = "Departure Aproved for Flight" + request.Flight.FlightCode;
+                    newFlightRequest.Type = "Departure Aproved for Flight " + request.Flight.FlightCode;
                     newFlightRequest.Time = request.Time;
                     newFlightRequest.aproved = true;
                     newFlightRequest.Created = DateTime.Now;
@@ -152,7 +152,7 @@ namespace AirportSimulatorBackend.Services
                         Flight atc = _flightRepo.getATCFlightEntity();
                         Request newFlightRequest = new Request();
                         newFlightRequest.Flight = atc;
-                        newFlightRequest.Type = "Landing Schedule Aproved for Flight" + request.Flight.FlightCode;
+                        newFlightRequest.Type = "Landing Schedule Aproved for Flight " + request.Flight.FlightCode;
                         newFlightRequest.Time = request.Time;
                         newFlightRequest.aproved = true;
                         newFlightRequest.Created = DateTime.Now;
@@ -187,7 +187,7 @@ namespace AirportSimulatorBackend.Services
                         Flight atc = _flightRepo.getATCFlightEntity();
                         Request newFlightRequest = new Request();
                         newFlightRequest.Flight = atc;
-                        newFlightRequest.Type = "Departure Schedule Aproved for Flight" + request.Flight.FlightCode;
+                        newFlightRequest.Type = "Departure Schedule Aproved for Flight " + request.Flight.FlightCode;
                         newFlightRequest.Time = request.Time;
                         newFlightRequest.aproved = true;
                         newFlightRequest.Created = DateTime.Now;

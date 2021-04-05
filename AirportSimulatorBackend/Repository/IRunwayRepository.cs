@@ -10,7 +10,7 @@ namespace AirportSimulatorBackend.Repository
     {
         Runway getRunwayInfo();
 
-        void LockRunway();
+        void LockRunway(string flightCode);
 
         void UnlockRunway();
     }
