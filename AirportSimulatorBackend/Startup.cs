@@ -37,15 +37,7 @@ namespace AirportSimulatorBackend
             });
 
             //Connection string for exercise purpose
-            const string postgresConnectionString = @"
-                Host=tai.db.elephantsql.com;
-                Port=5432;
-                Username=yslhojbi;
-                Password=qoaYmQi40_m7FKSC5rJLRg_Fzan10ZJ7;
-                Database=yslhojbi;
-                Pooling=true;
-                SSL Mode=Require;
-                TrustServerCertificate=True;
+            const string postgresConnectionString = @"Your Cloud Postgres connection string here
                 ";
 
             services.AddControllers();
